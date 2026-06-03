@@ -1,0 +1,30 @@
+{
+  "description": "Paid Ask The W plugins for Claude Code",
+  "metadata": {
+    "description": "Paid Ask The W plugins for Claude Code"
+  },
+  "name": "askthew",
+  "owner": {
+    "email": "support@askthew.com",
+    "name": "Ask The W"
+  },
+  "plugins": [
+    {
+      "category": "observability",
+      "description": "Authorized workspace-bound signal, decision, outcome, next-move, recap, and coaching capture",
+      "keywords": [
+        "askthew",
+        "paid",
+        "signals",
+        "decisions",
+        "next-moves",
+        "mcp"
+      ],
+      "name": "askthew-paid",
+      "source": {
+        "repo": "AskTheWAI/claude-code-plugin",
+        "source": "github"
+      }
+    }
+  ]
+}
