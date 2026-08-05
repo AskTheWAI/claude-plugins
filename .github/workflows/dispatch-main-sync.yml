@@ -13,11 +13,11 @@ permissions:
 jobs:
   dispatch:
     if: ${{ github.repository == 'AskTheWAI/claude-plugins' && vars.PLUGIN_SYNC_ENABLED != 'false' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Create narrow Main dispatch token
         id: app-token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2
         with:
           app-id: ${{ secrets.ASKTHEW_SYNC_APP_ID }}
           private-key: ${{ secrets.ASKTHEW_SYNC_APP_PRIVATE_KEY }}
