@@ -21,10 +21,7 @@
         "mcp"
       ],
       "name": "askthew-paid",
-      "source": {
-        "repo": "AskTheWAI/claude-code-plugin",
-        "source": "github"
-      }
+      "source": "./plugins/askthew-paid"
     }
   ]
 }

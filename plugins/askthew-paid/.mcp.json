@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "askthew": {
+      "args": [
+        "-y",
+        "--package",
+        "@askthew/mcp-plugin@0.6.0",
+        "askthew-mcp"
+      ],
+      "command": "npx",
+      "cwd": "${CLAUDE_PROJECT_DIR}",
+      "env": {
+        "ASKTHEW_API_URL": "https://my.askthew.com",
+        "ASKTHEW_HOST_TYPE": "claude_code",
+        "ASKTHEW_PLUGIN_TIER": "paid",
+        "ASKTHEW_REPO_ROOT": "${CLAUDE_PROJECT_DIR}",
+        "ASKTHEW_REQUIRE_PAID": "true"
+      }
+    }
+  }
+}

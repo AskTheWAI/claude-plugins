@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && npx -y --package @askthew/mcp-plugin@0.6.0 askthew-mcp session-start",
+            "statusMessage": "Ask The W paid ready",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "startup|resume|clear|compact"
+      }
+    ]
+  }
+}
