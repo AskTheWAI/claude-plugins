@@ -15,6 +15,7 @@
   ],
   "license": "MIT",
   "name": "askthew-paid",
+  "privacyPolicyUrl": "https://askthew.com/privacy",
   "repository": "https://github.com/AskTheWAI/claude-code-plugin",
   "version": "0.2.0"
 }
