@@ -4,6 +4,8 @@
     "name": "Ask The W"
   },
   "description": "Ask The W plugin for Claude. Choose a project, read its context, and act in it when you ask.",
+  "displayName": "Ask The W",
+  "documentationUrl": "https://askthew.com/plugin",
   "homepage": "https://askthew.com/plugin",
   "keywords": [
     "askthew",
@@ -16,6 +18,8 @@
   "license": "MIT",
   "name": "askthew-paid",
   "privacyPolicyUrl": "https://askthew.com/privacy",
-  "repository": "https://github.com/AskTheWAI/claude-code-plugin",
+  "repository": "https://github.com/AskTheWAI/claude-plugins",
+  "supportUrl": "https://askthew.com/support",
+  "termsOfServiceUrl": "https://askthew.com/terms",
   "version": "0.2.0"
 }
