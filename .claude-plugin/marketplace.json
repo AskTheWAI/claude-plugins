@@ -1,7 +1,7 @@
 {
-  "description": "Paid Ask The W plugins for Claude Code",
+  "description": "Ask The W plugins for Claude",
   "metadata": {
-    "description": "Paid Ask The W plugins for Claude Code"
+    "description": "Ask The W plugins for Claude"
   },
   "name": "askthew",
   "owner": {
@@ -10,12 +10,11 @@
   },
   "plugins": [
     {
-      "category": "observability",
-      "description": "Authorized workspace-bound signal, decision, outcome, next-move, recap, and coaching capture",
+      "category": "productivity",
+      "description": "Ask The W plugin for Claude. Choose a project, read its context, and act in it when you ask.",
       "keywords": [
         "askthew",
         "paid",
-        "signals",
         "decisions",
         "next-moves",
         "mcp"

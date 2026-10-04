@@ -3,12 +3,11 @@
     "email": "support@askthew.com",
     "name": "Ask The W"
   },
-  "description": "Paid Ask The W plugin for Claude Code: authorized workspace-bound signals, decisions, outcomes, next moves, recaps, and coaching.",
+  "description": "Ask The W plugin for Claude. Choose a project, read its context, and act in it when you ask.",
   "homepage": "https://askthew.com/plugin",
   "keywords": [
     "askthew",
     "paid",
-    "signals",
     "decisions",
     "next-moves",
     "mcp",
@@ -17,5 +16,5 @@
   "license": "MIT",
   "name": "askthew-paid",
   "repository": "https://github.com/AskTheWAI/claude-code-plugin",
-  "version": "0.1.0"
+  "version": "0.2.0"
 }
