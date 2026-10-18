@@ -1,24 +1,25 @@
 ---
-description: Paid Ask The W plugin for coding agents. Bind a project, pull context at session start, and push decisions or updates when the person asks.
+name: paid-workspace
+description: Ask The W for a connected project. Read context at session start, and write a decision or an update only when the person asks. The hosted connector signs in and has no bind step.
 ---
 
 # Ask The W Paid Workspace
 
-Use this skill when working in a Claude Code repo with the paid Ask The W plugin enabled.
+Use this skill when Ask The W is connected in Claude, Codex, or Cursor.
 
 ## What This Plugin Is
 
-This is the Ask The W plugin for coding agents. It starts the MCP server with `ASKTHEW_REQUIRE_PAID=true`, so protected tools need a paid project bind before normal use.
+This is the Ask The W plugin for coding agents. The hosted connector is `https://my.askthew.com/api/mcp`. Sign-in chooses the project. There is no bind step on that connector, and there is no local package to start.
 
-It is one plugin. Bind is required. The paid project is the source of context and the place later writes go. Local work stays local until the person asks to push an update.
+A local install that still starts with `ASKTHEW_REQUIRE_PAID=true` uses the bind steps below. The paid project is the source of context and the place later writes go. Local work stays local until the person asks to push an update.
 
 If a tool returns `free_limit_reached`, treat that as a server-side configuration problem for the paid install and tell the user.
 
 ## Connected Through The Hosted Address
 
-If Ask The W is connected through `https://my.askthew.com/api/mcp` (Claude, ChatGPT, or another AI app), there is no bind step. Sign-in already chose a starting project.
+If Ask The W is connected through `https://my.askthew.com/api/mcp` (Claude, ChatGPT, Claude Code, Cursor, or another AI app), there is no bind step. Sign-in already chose a starting project. The published Claude Code plugin uses this sign-in. Do not call `askthew_start_workspace_bind` for it, and do not ask the person to confirm a displayed code.
 
-- `list_projects` lists the projects the person can connect. `choose_project` switches to one, by `project_id` or by a working preview address. `create_project` returns the link that creates a new project in the web app.
+- `list_projects` lists the projects the person can connect. `choose_project` switches to one, by `project_id` or by a working preview address. `create_project` creates the project when the user explicitly asks. Why, What, and Who are filled from the user's words when that is enough. If the result includes questions, ask the user those questions and call again with the answers. Do not invent an answer. Autopilot is on unless you pass false.
 - Ask W's own tools are here too, for example `way_board_read`, `create_decision`, `create_outcome`, `set_card_field`, `add_to_way`, and `files_answer`. Each one runs the same checks as the web app. Call a write only when the person asks.
 - After `claim_work`, keep the `leaseToken` it returns. Pass it to `heartbeat_work`, `complete_work`, and `release_work`.
 
@@ -32,6 +33,8 @@ Do not call `capture_session_signal` at session start. There is no `setup_comple
 
 ## If The Install Is Unbound
 
+This bind step is for the Codex plugin. The published Claude Code plugin signs in through the browser and does not call these tools.
+
 If `get_project_context` reports that this install is not connected to a project:
 
 1. Call `askthew_start_workspace_bind`.
@@ -39,7 +42,17 @@ If `get_project_context` reports that this install is not connected to a project
 3. Call `askthew_check_workspace_bind({ codeDisplay })` until it reports `completed`.
 4. Retry `get_project_context`. If bound, also call `list_ready_work`.
 
-Bind is the only doorway. There are no signup tools in this plugin. Do not try to sign the user up from the terminal. Do not ask for an email or a six-digit code.
+Bind is the doorway for a first connection, and for a token that is no longer valid. There are no signup tools in this plugin. Do not try to sign the user up from the terminal. Do not ask for an email or a six-digit code.
+
+## Switch This Repo
+
+When the person asks to use a different Ask The W project in this repo, do not start another bind.
+
+1. Call `list_projects`. The current project is marked.
+2. Call `choose_project` with `projectId` from that list, or with `title` when one project matches.
+3. Later tools use the chosen project.
+
+A switch hands any claimed work back to the queue.
 
 ## Local Work Stays Local
 
@@ -69,4 +82,4 @@ Call these only when the user asks, except the standing-doc read at claim:
 
 - `list_project_docs` for Project files the working preview is built from. `read_project_doc` / `write_project_doc` for a named Workspace file.
 - `draft_wire_message` drafts a Wire message. Draft only. It never sends.
-- `request_world_analysis` and `request_whiteboard_map` request work from World and Whiteboard. Both return a run id to poll, and both go through the same review path as those product UIs.
+- `request_world_analysis` starts a paid World analysis. Call it only when the person asks. `request_whiteboard_map` requests a Whiteboard map, also only when the person asks. Both return a run id to poll, and both go through the same review path as those product UIs.
