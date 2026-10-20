@@ -19,7 +19,7 @@ If a tool returns `free_limit_reached`, treat that as a server-side configuratio
 
 If Ask The W is connected through `https://my.askthew.com/api/mcp` (Claude, ChatGPT, Claude Code, Cursor, or another AI app), there is no bind step. Sign-in already chose a starting project. The published Claude Code plugin uses this sign-in. Do not call `askthew_start_workspace_bind` for it, and do not ask the person to confirm a displayed code.
 
-- `list_projects` lists the projects the person can connect. `choose_project` switches to one, by `project_id` or by a working preview address. `create_project` creates the project when the user explicitly asks. Why, What, and Who are filled from the user's words when that is enough. If the result includes questions, ask the user those questions and call again with the answers. Do not invent an answer. Autopilot is on unless you pass false.
+- `list_projects` lists the projects the person can connect. `choose_project` switches to one, by `project_id` or by a working preview address. `create_project` creates the project when the user explicitly asks. Why, What, and Who are filled from the user's words when that is enough. If the result includes questions, ask the user those questions and call again with the answers. Do not invent an answer. Autopilot is on. It stays on unless the person's own sentence says otherwise.
 - Ask W's own tools are here too, for example `way_board_read`, `create_decision`, `create_outcome`, `set_card_field`, `add_to_way`, and `files_answer`. Each one runs the same checks as the web app. Call a write only when the person asks.
 - After `claim_work`, keep the `leaseToken` it returns. Pass it to `heartbeat_work`, `complete_work`, and `release_work`.
 
